@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-model</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<form>
+    用户名：<input type="text" ng-model="user.username">
+    密码：<input type="text" ng-model="user.psd">
+    <button ng-click="reg()">注册</button>
+    <button ng-click="reset()">重置</button>
+</form>
+<script src="angular.js"></script>
+<script type="text/javascript" charset="utf-8">
+    angular.module("myApp",[]);
+    angular.module("myApp").controller("myCtrl", function ($scope) {
+        $scope.user = {};
+        $scope.reg = function () {
+            console.log($scope.user);
+        };
+        $scope.reset = function () {
+            $scope.user = {}
+        }
+    })
+</script>
+</body>
+</html>

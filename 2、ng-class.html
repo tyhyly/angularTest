@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-model</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="container">
+    <form name="userForm"><!--相当于在scope上挂了一个userForm属性-->
+    <div class="control-group" ng-class="{'has-error':userForm.username.$invalid&&
+    userForm.username.$dirty,'has-success':
+    userForm.username.$valid}">
+        <div class="control-label">用户名</div>
+        <input name="username" ng-minlength="3" ng-maxlength="6" ng-required="true"
+               ng-pattern="/^\d+$/" type="text" class="form-control" ng-model="user.username">
+        <p class="help-block" ng-show="userForm.username.$error.minlength">最小长度不够3位</p>
+        <p class="help-block" ng-show="userForm.username.$error.maxlength">最大长度不能超过6位</p>
+        <p class="help-block" ng-show="userForm.username.$error.pattern">只能包含数字</p>
+    </div>
+    <div class="control-group">
+        <div class="control-label">邮箱</div>
+        <input name="email" type="text" class="form-control" ng-model="user.email">
+    </div>
+        <div class="control-group">
+            <button class="btn btn-default" ng-click="reg()">注册</button>
+            <button class="btn btn-danger" ng-click="reset()">重置</button>
+        </div>
+
+
+    </form>
+</div>
+
+<script src="angular.js"></script>
+<script type="text/javascript" charset="utf-8">
+    angular.module("myApp",[]);
+    angular.module("myApp").controller("myCtrl", function ($scope) {
+        $scope.user = {};
+        $scope.reg = function () {
+            console.log($scope.user);
+        };
+        $scope.reset = function () {
+            $scope.user = {}
+        }
+    })
+</script>
+</body>
+</html>

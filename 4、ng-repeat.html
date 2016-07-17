@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-model</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<table class="table table-responsive">
+    <tr>
+        <td>商品名称</td>
+        <td>商品价格</td>
+        <td>商品数量</td>
+        <td>商品金额</td>
+    </tr>
+    <tr ng-repeat="item in items">
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td><input type="text" ng-model="item.amount"></td>
+        <td>{{item.price*item.amount}}</td>
+    </tr>
+    <tr>
+        <td colspan="4">总金额:{{total()}}</td>
+    </tr>
+    <tr>
+        <td colspan="4 ">
+            折扣：<input colspan="1" type="text" ng-model="discount">
+            折后金额:{{total()*(discount?discount:1)}}</td>
+    </tr>
+</table>
+
+
+<script src="angular.js"></script>
+<script type="text/javascript" charset="utf-8">
+    angular.module("myApp",[]);
+    angular.module("myApp").controller("myCtrl", function ($scope) {
+        $scope.items = [{
+            name:"iphone7",
+            price:3000,
+            amount:1
+        },{
+            name:"ipadAir",
+            price:3400,
+            amount:1
+        },{
+            name:"applePro",
+            price:4300,
+            amount:1
+        }];
+        $scope.total = function () {
+            return $scope.items.reduce(function (current,next) {
+                return current+next.price*next.amount;
+            },0);
+        };
+        //$scope.discount = 1;
+    })
+</script>
+</body>
+</html>

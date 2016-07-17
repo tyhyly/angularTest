@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-model</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="container">
+    <button class="btn btn-default" ng-click="show=!show">
+        切换
+    </button>
+    <p ng-show="show">ng-show</p>
+    <p ng-hide="show">ng-hide</p>
+
+
+</div>
+
+<script src="angular.js"></script>
+<script type="text/javascript" charset="utf-8">
+    angular.module("myApp",[]);
+    angular.module("myApp").controller("myCtrl", function ($scope) {
+
+    })
+</script>
+</body>
+</html>
